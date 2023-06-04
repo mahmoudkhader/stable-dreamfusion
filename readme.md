@@ -65,6 +65,15 @@ To use image-conditioned 3D generation, you need to download some pretrained che
     gdown '1Jrh-bRnJEjyMCS7f-WsaFlccfPjJPPHI&confirm=t' # omnidata_dpt_depth_v2.ckpt
     gdown '1wNxVO4vVbDEMEpnAi_jwQObf2MFodcBR&confirm=t' # omnidata_dpt_normal_v2.ckpt
     ```
+    
+    If you're unable to use gdown, such as when using WSL (Ubuntu 22.04.2 distro), this is a potential workaround:
+    ```bash
+    wget --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://drive.google.com/uc?id=1Jrh-bRnJEjyMCS7f-WsaFlccfPjJPPHI&confirm=t' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p' > /tmp/confirm.txt
+    wget --load-cookies /tmp/cookies.txt 'https://docs.google.com/uc?export=download&confirm='$(</tmp/confirm.txt)'&id=1Jrh-bRnJEjyMCS7f-WsaFlccfPjJPPHI&confirm=t' -O omnidata_dpt_depth_v2.ckpt && rm -rf /tmp/cookies.txt /tmp/confirm.txt
+
+    wget --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://drive.google.com/uc?id=1wNxVO4vVbDEMEpnAi_jwQObf2MFodcBR&confirm=t' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p' > /tmp/confirm.txt
+    wget --load-cookies /tmp/cookies.txt 'https://docs.google.com/uc?export=download&confirm='$(</tmp/confirm.txt)'&id=1wNxVO4vVbDEMEpnAi_jwQObf2MFodcBR&confirm=t' -O omnidata_dpt_normal_v2.ckpt && rm -rf /tmp/cookies.txt /tmp/confirm.txt 
+    ```
 
 To use [DeepFloyd-IF](https://github.com/deep-floyd/IF), you need to accept the usage conditions from [hugging face](https://huggingface.co/DeepFloyd/IF-I-XL-v1.0), and login with `huggingface-cli login` in command line.
 
